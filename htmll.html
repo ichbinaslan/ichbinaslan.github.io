@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ASLAN's WEBSITE</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+	html{
+	scroll-behavior: smooth;
+}
+</style>
+	
+</head>
+
+<body>
+<div class="header" id="head">
+	<div id="container">
+		<nav>
+			<img src="logo1.png" class="logo">
+			<ul id="sidemenu">
+				<li><a href="#head">Home</a> </li>
+				<li><a href="#about">About</a> </li>
+				<li><a href="#contact">Contact</a> </li>
+				<i class="fa fa-times" aria-hidden="true" onclick="closemenu()"></i>
+			</ul>
+			<i class="fa fa-bars" aria-hidden="true" onclick="openmenu()"></i>
+		</nav>
+		<div class="header-text">
+			<h1>I'm <span>Aslan</span></h1>
+			<h2>a wannabe web developer</h2>
+    <a href="resume.docx" download>Download Resume</a>
+	</div>
+	</div>
+</div>
+	
+
+<div class="content">
+<div class="about-section" id="about">
+	<div class="container">
+		<div class="row">
+			<div class="about1">
+				<img src="images/aslanavatar.jpg">
+			</div>
+			<div class="about2">
+			<h1>About Me</h1>
+			<p>Hi! My name is Aslan, a future software developer. I was graduated from high school in 2021 and soon after got accepted to a double diploma program between Baku Engineering University and Inha University. And since then I am studying Information Technologies at BEU.</p>
+			<div class="tab-titles">
+				<p class="tab-links active-link" onclick="opentab('Education')">Education</p>
+				<p class="tab-links" onclick="opentab('Experience')">Experience</p>
+			</div>
+			<div class="tab-contents active-tab" id="Education">
+				<ul>
+					<li><span>High School</span><br>112N High School</li>
+					<li><span>University</span><br>Baku Engineering University</li>
+				</ul>
+			</div>
+			<div class="tab-contents" id="Experience">
+				NO EXPERIENCE YET
+			</div>
+			<button type="button">Hire Me</button>
+			
+		</div>
+		</div>
+	</div> 
+</div>
+	
+</div>
+
+<div id="contact">
+	<div id="container">
+		<div class="row">
+			<div class="contact-left">
+				<h1 class="sub-title">Contact Me</h1>
+				<p><i class="fa fa-envelope" aria-hidden="true"></i>04aslanmemmedov@gmail.com</p>
+				<p><i class="fa fa-phone-square" aria-hidden="true"></i>0708006474</p>
+				<div class="social-icons">
+					<a href=""><i class="fa fa-facebook" ></i></a>
+					<a href=""><i class="fa fa-twitter" ></i></a>
+					<a href=""><i class="fa fa-instagram" ></i></a>
+				</div>
+				
+			</div>
+			<div class="contact-right">
+			<form name="submit-to-google-sheet">
+				<input type="text" name="Name" placeholder="Aslan" required>
+				<input type="email" name="email" placeholder="example@gmail.com" required>
+				<textarea name="Message" rows="6" placeholder="Message"></textarea>
+				<button type="submit">Submit</button>
+			</form>
+			<span class="message"></span>
+			</div>
+		</div>
+		
+	</div>
+	
+</div>
+<script>
+	var sidemenu = document.getElementById("sidemenu");
+	function openmenu() {
+		sidemenu.style.right = "0";
+	}
+	function closemenu() {
+		sidemenu.style.right = "-200px";
+	}
+</script>
+<script>
+	var tablinks = document.getElementsByClassName("tab-links");
+	var tabcontents = document.getElementsByClassName("tab-contents");
+
+	function opentab(tabname){
+		for (tablink of tablinks) {
+			tablink.classList.remove("active-link");
+		}
+		for (tabcontent of tabcontents) {
+			tabcontent.classList.remove("active-tab");
+		}
+		event.currentTarget.classList.add("active-link");
+		document.getElementById(tabname).classList.add("active-tab");
+	}
+</script>
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbz3wu-vijiJJGi2qb3EgBAcJtHa6hMTG3VSfEZulJYxbi3kZGORAs4tPFTXorXoc8X8fQ/exec'
+  const form = document.forms['submit-to-google-sheet']
+  const message = document.getElementById("message")
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+      	message.innerHTML = "Your message has been delivered successfully!"
+      	setTimeout(function(){
+          message.innerHTML = ""
+      	},5000)
+      	form.reset()
+      })
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+</body>
+<footer>
+	<div class="footer" id="contact">
+	<div class="copyright">
+		<p>© Copyright 2022</p>
+	</div>
+</div>
+</footer>
+</html>
